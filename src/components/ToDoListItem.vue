@@ -15,7 +15,7 @@
         />
 
         <span v-if="!task.isUpdate" v-bind:class="{ lineThrough: task.isDone }">
-          {{ task.title }} - {{ task.description }}
+           {{ task.fields }} 
         </span>
         <input
           v-if="task.isUpdate"

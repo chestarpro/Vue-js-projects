@@ -4,6 +4,7 @@
     <ToDoListField
       v-bind:taskItem="taskItem"
       @createNewItem="createNewItem"
+
       @openCreateFieldWindow="isUpdateFieldWindow(true)"
     />
     <ul class="task-list">
@@ -22,7 +23,7 @@
       v-if="isUpdateFiled"
       v-bind:isUpdateFiled="isUpdateFiled"
       @closeCreateFieldWindow="isUpdateFieldWindow(false)"
-      @addField="addField(value)"
+      @addField="addField"
     />
   </div>
 </template>
@@ -64,15 +65,20 @@ export default {
     isUpdateFieldWindow(value) {
       this.isUpdateFiled = value;
     },
-    createNewItem: function () {
-      if (!this.taskItem.fields.title) {
-        alert("Title is empty");
-        return;
-      }
+    changer(object) {
+      console.log(object)
+      this.taskItem.fields[object.fieldType] = object.event;
+    },
+    createNewItem() {
+      // if (this.taskItem.fields.title.length) {
+      //   alert("Title is empty");
+      //   return;
+      // }
       this.tasks.push({ ...this.taskItem });
 
       localStorage.setItem("tasks", JSON.stringify(this.tasks));
-      for (const field of this.taskItem.fields) {
+      for (const field in this.taskItem.fields) {
+        console.log(field)
         this.taskItem.fields[field] = "";
       }
     },

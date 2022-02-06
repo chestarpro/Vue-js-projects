@@ -13,6 +13,7 @@
       type="text"
       :placeholder="fieldType"
       :key="fieldType"
+      @input="$emit('fields', {fieldType, event:$event.target.value})"
       v-for="(field, fieldType) in taskItem.fields"
     />
 
