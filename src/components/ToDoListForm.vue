@@ -70,10 +70,10 @@ export default {
       this.taskItem.fields[object.fieldType] = object.event;
     },
     createNewItem() {
-      // if (this.taskItem.fields.title.length) {
-      //   alert("Title is empty");
-      //   return;
-      // }
+      if (this.taskItem.fields.title.length) {
+        alert("Title is empty");
+        return;
+      }
       this.tasks.push({ ...this.taskItem });
 
       localStorage.setItem("tasks", JSON.stringify(this.tasks));
@@ -83,7 +83,7 @@ export default {
       }
     },
     addField(value) {
-      if (value === '') alert("Error");
+      if (!value) alert("Error");
       else {
         this.$set(this.taskItem.fields,value, "");
         value = '';

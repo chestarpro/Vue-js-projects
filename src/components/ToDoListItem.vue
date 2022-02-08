@@ -14,9 +14,12 @@
           @click="$emit('setTaskDone', index)"
         />
 
-        <span v-if="!task.isUpdate" v-bind:class="{ lineThrough: task.isDone }">
-           {{ task.fields }} 
-        </span>
+        <div v-for="(fieldVal, fieldType) in task.fields" :key="fieldType" class="block"> 
+       <span v-if="!task.isUpdate" v-bind:class="{ lineThrough: task.isDone}"> 
+        {{fieldType}}: {{task.fields[fieldType]}} &nbsp; 
+       </span> 
+ 
+     </div>
         <input
           v-if="task.isUpdate"
           class="title-input-upadte"
